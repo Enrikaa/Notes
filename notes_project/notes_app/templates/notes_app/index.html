@@ -3,17 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
   </head>
   <body>
-    <h2>Hello world</h2>
-    <div class="nav_btn">
-      <button type="button" name="button">btn1</button>
-      <button type="button" name="button">btn2</button>
-      <button type="button" name="button">btn3</button>
-      <button type="button" name="button">btn4</button>
+    <br>
+    <div class="container">
+      <button type="button" class="btn btn-primary" name="button">Create</button>
+      <button type="button" class="btn btn-primary" name="button">Read</button>
+      <button type="button" class="btn btn-primary" name="button">Undo</button>
+      <button type="button" class="btn btn-primary" name="button">Delete</button>
     </div>
-
-    <div class="note_field" style='background:red'>
+    <br>
+    <div class="container alert alert-primary" >
       notes field
     </div>
 
