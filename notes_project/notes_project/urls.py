@@ -22,5 +22,5 @@ from notes_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$',views.index,name = "index"),
-    url(r'^notes_app/',include('notes_app.urls')),
+    url(r'^',include('notes_app.urls')),
 ]

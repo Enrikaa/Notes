@@ -10,14 +10,18 @@
   <body>
     <br>
     <div class="container">
-      <button type="button" class="btn btn-primary" name="button">Create</button>
-      <button type="button" class="btn btn-primary" name="button">Read</button>
-      <button type="button" class="btn btn-primary" name="button">Undo</button>
-      <button type="button" class="btn btn-primary" name="button">Delete</button>
+      <a href="{% url 'create' %}"><button type="button" class="btn btn-primary" name="button">Create</button></a>
+      <a href="{% url 'read' %}"><button type="button" class="btn btn-primary" name="button">Read</button></a>
+      <a href="{% url 'undo' %}"><button type="button" class="btn btn-primary" name="button">Undo</button></a>
+      <a href="{% url 'delete' %}"><button type="button" class="btn btn-primary" name="button">Delete</button></a>
     </div>
+    
     <br>
     <div class="container alert alert-primary" >
-      notes field
+      <h2>Note</h2>
+
+      {% block content %}
+      {% endblock %}
     </div>
 
 

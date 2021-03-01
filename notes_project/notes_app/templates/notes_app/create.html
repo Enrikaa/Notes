@@ -1,0 +1,28 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+<br>
+<form>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Title</label>
+      <input type="email" class="form-control" id="title">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Category select</label>
+      <select class="form-control" id="categorySelect">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+ 
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Note text</label>
+      <textarea class="form-control" id="noteText" rows="3"></textarea>
+    </div>
+  </form>
+
+
+
+{% endblock %}
