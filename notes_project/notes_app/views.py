@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Note_model
 # Create your views here.
 
 def index(request):
@@ -9,7 +10,8 @@ def create(request):
     return render(request,'notes_app/create.html')
 
 def read(request):
-    return render(request,'notes_app/read.html')
+    data=Note_model.objects.all()
+    return render(request,'notes_app/read.html',{'notes':data})
 
 def undo(request):
     return render(request,'notes_app/undo.html')

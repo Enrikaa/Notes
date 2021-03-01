@@ -6,3 +6,6 @@ class Note_model(models.Model):
     category = models.CharField(max_length=150,unique=True)
     title = models.CharField(max_length=100,unique=True)
     note_text = models.CharField(max_length=20000)
+
+    def __str__(self):
+        return self.title
