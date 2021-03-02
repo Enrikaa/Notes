@@ -1,6 +1,6 @@
 {% extends 'notes_app/index.html' %}
 {% block content %}
-<br>
+<!-- <br>
 <form>
     <div class="form-group">
       <label for="exampleFormControlInput1">Title</label>
@@ -22,8 +22,16 @@
       <textarea class="form-control" id="noteText" rows="3"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+  </form> -->
+
+  <form  method="POST">
+    {% csrf_token %}
+    {{form.title}}<br>
+    {{form.category}}<br>
+    {{form.note_text}}<br>
+    <button type="submit" class="btn btn-success">Create</button>
+    <span>{{ error }}</span>
   </form>
 
-
-
+ 
 {% endblock %}
