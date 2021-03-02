@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Note_model, Topic
+from .models import Note_model
 # Create your views here.
 
 def index(request):
