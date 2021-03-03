@@ -11,6 +11,7 @@ class Noteform(forms.Form):
     category.widget.attrs.update({'class':'form-control'})
     title.widget.attrs.update({'class':'form-control'})
     note_text.widget.attrs.update({'class':'form-control'})
+    
     def clean_title(self):
         new_title=self.cleaned_data['title'].lower()
         if new_title=='create':
