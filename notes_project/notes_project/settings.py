@@ -19,8 +19,11 @@ TEMPLATE_DIR = os.path.join(PROJECT_ROOT, "templates")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+#generate secret key
+# python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = '9tnq0*^#4e=l=(#8e1wwtz4b9pe7bj4g16nb$&ze)d-d)$l$h5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

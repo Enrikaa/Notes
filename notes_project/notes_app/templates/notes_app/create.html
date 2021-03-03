@@ -1,37 +1,23 @@
 {% extends 'notes_app/index.html' %}
 {% block content %}
-<!-- <br>
-<form>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Title</label>
-      <input type="email" class="form-control" id="title">
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Category select</label>
-      <select class="form-control" id="categorySelect">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-    </div>
- 
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Note text</label>
-      <textarea class="form-control" id="noteText" rows="3"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form> -->
+  <form action="{% url 'create' %}" method="post">
+    {% csrf_token%}
 
-  <form  method="POST">
-    {% csrf_token %}
-    {{form.title}}<br>
-    {{form.category}}<br>
-    {{form.note_text}}<br>
+    {% for field in form %}
+      <div class='form-group'>
+        {% if field.errors %}
+          <div class='alert alert-danger'>
+            {{ field.errors }}
+          </div>
+        {% endif %}
+
+        {{ field.label }}
+        {{ field }}
+
+      </div>
+    {% endfor %}
+
+   
     <button type="submit" class="btn btn-success">Create</button>
-    <span>{{ error }}</span>
   </form>
-
- 
 {% endblock %}
