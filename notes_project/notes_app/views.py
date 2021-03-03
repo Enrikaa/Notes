@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Note_model
-from .forms import Noteform
+from notes_app.forms import Noteform
 from django import forms
 from urllib import request
+from notes_app.models import Note_model
 # Create your views here.
 
 def index(request):
@@ -26,4 +26,7 @@ def undo(request):
     return render(request,'notes_app/undo.html')
 
 def delete(request):
-    return render(request,'notes_app/delete.html')
+    posts = Note_model.objects.all()
+
+    args = {'posts': posts}
+    return render(request,'notes_app/delete.html', context=args)

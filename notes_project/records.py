@@ -22,7 +22,7 @@ def add_data(N):
 
         cat_data = add_cat()
         tit_data = fakegen.company()
-        not_data = fakegen.name()
+        not_data = fakegen.text()
 
         t = Note_model(category=cat_data,title=tit_data,note_text=not_data)
         t.save()
