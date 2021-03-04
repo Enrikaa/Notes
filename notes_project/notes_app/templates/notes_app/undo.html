@@ -1,7 +1,22 @@
 {% extends 'notes_app/index.html' %}
 {% block content %}
-<h1>Undo</h1>
 
+<h1>Undo data</h1>
+<form action="{% url 'undo' %}" method="post">
+    {% csrf_token%}
+  <div class="form-group green-border-focus">
+    <label for="exampleFormControlTextarea5">Category</label>
+    <textarea class="form-control" id="exampleFormControlTextarea5" rows="1">{{note.category}}</textarea>
+  </div>
+  <div class="form-group green-border-focus">
+    <label for="exampleFormControlTextarea5">Title</label>
+    <textarea class="form-control" id="exampleFormControlTextarea5" rows="1">{{note.title}}</textarea>
+  </div>
+  <div class="form-group green-border-focus">
+    <label for="exampleFormControlTextarea5">Note text</label>
+    <textarea class="form-control" id="exampleFormControlTextarea5" rows="2">{{note.note_text}}</textarea>
+  </div>
 
-
+  <button type="submit" class="btn btn-success">Save Changes</button>
+</form>
 {% endblock %}
