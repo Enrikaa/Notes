@@ -33,6 +33,10 @@ def undo(request):
 
 def delete(request):
     posts = Note_model.objects.all()
-
     args = {'posts': posts}
     return render(request, 'notes_app/delete.html', context=args)
+
+
+def test_update(request, num):
+    obj = Note_model.objects.get(id=num)
+    return render(request, 'notes_app/test_update.html', {'note': obj})

@@ -1,0 +1,15 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+
+<h1>Number from test</h1>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 34rem;">
+  <div class="card-header">{{note.category}}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{note.title}}</h5>
+    <p class="card-text">{{note.note_text}}</p>
+    <a href="{% url 'index' %}"><button type="button" class="btn btn-primary" name="button">Undo</button></a>
+  </div>
+</div>
+
+{% endblock %}

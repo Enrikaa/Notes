@@ -26,3 +26,8 @@ class Noteform(forms.Form):
             note_text=self.cleaned_data['note_text'],
         )
         return new_note
+
+    def save_title(self):
+
+        title = self.cleaned_data['title']
+        return title

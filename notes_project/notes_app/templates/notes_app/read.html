@@ -9,7 +9,8 @@
     <div class="card-body">
       <h5 class="card-title">{{note.title}}</h5>
       <p class="card-text">{{note.note_text}}</p>
-      <a href="{% url 'undo' %}"><button type="button" class="btn btn-primary" name="button">Undo</button></a>
+      <a href="{% url 'test_update' note.id %}"><button type="button" class="btn btn-info" name="button">Info</button></a>
+      
     </div>
   </div>
 {% endfor %}
