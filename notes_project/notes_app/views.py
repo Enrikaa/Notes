@@ -39,4 +39,8 @@ def delete(request):
 
 def test_update(request, num):
     obj = Note_model.objects.get(id=num)
+
+    if (request.GET.get('DeleteButton')):
+        Note_model.objects.filter(id=request.GET.get('DeleteButton')).delete()
+        return redirect('read')
     return render(request, 'notes_app/test_update.html', {'note': obj})
