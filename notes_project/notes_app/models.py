@@ -9,4 +9,4 @@ class Note_model(models.Model):
 
 
     def __str__(self):
-        return self.category
+        return self.id
