@@ -44,3 +44,10 @@ def test_update(request, num):
         Note_model.objects.filter(id=request.GET.get('DeleteButton')).delete()
         return redirect('read')
     return render(request, 'notes_app/test_update.html', {'note': obj})
+
+
+def update(request, num):
+    model = Note_model.objects.get(id=num)
+    forma = Noteform()
+    context = {'form': model}
+    return render(request, 'notes_app/update.html', context)

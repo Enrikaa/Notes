@@ -10,6 +10,7 @@
     <p class="card-text">{{note.note_text}}</p>
     <form action="" method="get">
       <button class = "btn btn-default" name="DeleteButton" value="{{ note.id }}">Delete</button>
+      <a href="{% url 'update' note.id %}"><button type="button" class="btn btn-info" name="button">Update</button></a>
   </form>
     
   </div>

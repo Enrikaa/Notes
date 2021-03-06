@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^undo/$', views.undo, name='undo'),
     url(r'^delete/$', views.delete, name='delete'),
     path('test_update/<int:num>/', views.test_update, name='test_update'),
+    path('update/<int:num>/', views.update, name='update'),
 ]
