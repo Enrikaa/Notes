@@ -13,4 +13,8 @@ urlpatterns = [
     url(r'^delete/$', views.delete, name='delete'),
     path('test_update/<int:num>/', views.test_update, name='test_update'),
     path('update/<int:num>/', views.update, name='update'),
+
+
+
+    url(r'^register/$', views.register, name='register'),
 ]
