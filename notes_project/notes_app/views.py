@@ -52,6 +52,7 @@ def update(request, num):
     context = {'form': model}
     return render(request, 'notes_app/update.html', context)
 
+<<<<<<< HEAD
 # def read2(request):
 #     posts = Note_model.objects.all()
 #     data = {'notes':posts}
@@ -64,5 +65,8 @@ def update(request, num):
 #     if (request.GET.get("deleteButton")):
 #         Note_model.objects.filter(id=request.GET.get('deleteButton')).delete()
 #         return redirect(read2)
+=======
+
+>>>>>>> 2316f15ebd056170340b38631bf0bd55f81b7265
 
 #     return render(request, 'notes_app/test_update2.html', context=data)
