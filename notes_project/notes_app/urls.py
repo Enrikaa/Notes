@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from notes_app.models import Note_model
 from django.urls import path
 
+
 urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^create/$', views.create, name='create'),
