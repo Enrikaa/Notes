@@ -9,6 +9,7 @@
     <div class="card-body">
       <h5 class="card-title">{{note.title}}</h5>
       <p class="card-text">{{note.note_text}}</p>
+      <p class="card-text">{{note.id}}</p>
       <a href="{% url 'test_update' note.id %}"><button type="button" class="btn btn-info" name="button">Info</button></a>
       
     </div>

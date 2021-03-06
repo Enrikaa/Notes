@@ -45,17 +45,12 @@ def test_update(request, num):
         return redirect('read')
     return render(request, 'notes_app/test_update.html', {'note': obj})
 
-def read2(request):
-    posts = Note_model.objects.all()
-    data = {'notes':posts}
-    return render(request, 'notes_app/read2.html',context=data)
 
-def test_update2(request, num):
-    obj = Note_model.objects.get(id=num)
-    data = {'notes':obj}
-    if (request.GET.get("deleteButton")):
-        Note_model.objects.filter(id=request.GET.get('deleteButton')).delete()
-        return redirect(read2)
+def update(request, num):
+    model = Note_model.objects.get(id=num)
+    forma = Noteform()
+    context = {'form': model}
+    return render(request, 'notes_app/update.html', context)
 
-    return render(request, 'notes_app/test_update2.html', context=data)
+
 

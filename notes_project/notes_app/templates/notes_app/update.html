@@ -1,0 +1,19 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 34rem;">
+          <div class="card-header">{{model.category}}</div>
+          <div class="card-body">
+            <h5 class="card-title">{{model.title}}</h5>
+            <p class="card-text">{{model.note_text}}</p>
+<form action="{% url 'update' %}" method="post">
+  {% csrf_token%}
+    <div class='form-group'>
+        <div class='alert alert-danger'>
+        {{form.title}}
+        </div>
+    </div>
+  <button type="submit" class="btn btn-success">Create</button>
+</form>
+
+{% endblock %}
