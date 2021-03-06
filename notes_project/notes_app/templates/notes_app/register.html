@@ -1,0 +1,19 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+  <form action="{% url 'register' %}" method="POST">
+    {% csrf_token%}
+
+    {% for field in form %}
+      <div class='form-group'>
+        
+
+        {{ field.label }}
+        {{ field }}
+
+      </div>
+    {% endfor %}
+
+   
+    <button type="submit" class="btn btn-success">Create</button>
+  </form>
+{% endblock %}

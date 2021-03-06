@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from notes_app.forms import Noteform
+from notes_app.forms import Noteform, Accountform
 from django import forms
 from urllib import request
-from notes_app.models import Note_model
+from notes_app.models import Note_model, Account
 # Create your views here.
 
 
@@ -53,3 +53,11 @@ def update(request, num):
     return render(request, 'notes_app/update.html', context)
 
 
+def register(request):
+    bound_form = Accountform(request.POST)
+
+    if bound_form.is_valid():
+        _form = bound_form.save_account()
+        return redirect('index')
+
+    return render(request, 'notes_app/register.html', {'form': bound_form})

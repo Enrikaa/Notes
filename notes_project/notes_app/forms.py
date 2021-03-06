@@ -1,10 +1,11 @@
-from .models import Note_model
+from .models import Note_model, Account
 from django.forms import ModelForm, TextInput
 from django import forms
 from django.core.exceptions import ValidationError
 
 
 class Noteform(forms.Form):
+    # id = forms.AutoField(primary_key=True)
     category = forms.CharField(max_length=264)
     title = forms.CharField(max_length=264)
     note_text = forms.CharField(max_length=264)
@@ -26,3 +27,25 @@ class Noteform(forms.Form):
             note_text=self.cleaned_data['note_text'],
         )
         return new_note
+
+
+class Accountform(forms.Form):
+    # id = forms.AutoField()
+    name = forms.CharField(max_length=264)
+    username = forms.CharField(max_length=264)
+    gender = forms.CharField(max_length=264)
+    age = forms.CharField(max_length=264)
+
+    name.widget.attrs.update({'class': 'form-control'})
+    username.widget.attrs.update({'class': 'form-control'})
+    gender.widget.attrs.update({'class': 'form-control'})
+    age.widget.attrs.update({'class': 'form-control'})
+
+    def save_account(self):
+        new_account = Account.objects.create(
+            name=self.cleaned_data['name'],
+            username=self.cleaned_data['username'],
+            gender=self.cleaned_data['gender'],
+            age=self.cleaned_data['age'],
+        )
+        return new_account
