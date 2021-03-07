@@ -52,6 +52,7 @@ def update(request, num):
     context = {'form': model}
     return render(request, 'notes_app/update.html', context)
 
+
 def userinfo(request):
 
     registered = False
@@ -68,7 +69,9 @@ def userinfo(request):
             return redirect('userinfo')
     else:
         user_info = UserInfoForm()
-    return render(request, 'notes_app/userinfo.html', {'user_info':user_info, 'registered':registered})
+    return render(request, 'notes_app/userinfo.html', {'user_info': user_info, 'registered': registered})
+
+
 def register(request):
     bound_form = Accountform(request.POST)
 
