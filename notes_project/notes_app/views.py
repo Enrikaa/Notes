@@ -4,6 +4,7 @@ from notes_app.forms import Noteform
 from django import forms
 from urllib import request
 from notes_app.models import Note_model
+from notes_app.forms import UserInfoForm, Accountform
 # Create your views here.
 
 
