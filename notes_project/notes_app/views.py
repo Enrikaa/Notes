@@ -51,3 +51,29 @@ def update(request, num):
     forma = Noteform()
     context = {'form': model}
     return render(request, 'notes_app/update.html', context)
+
+def userinfo(request):
+
+    registered = False
+
+    if request.method == 'POST':
+
+        user_info = UserInfoForm(data=request.POST)
+
+        if user_info.is_valid():
+            user = user_info.save()
+            user.set_password(user.password)
+            user.save()
+            registered = True
+            return redirect('userinfo')
+    else:
+        user_info = UserInfoForm()
+    return render(request, 'notes_app/userinfo.html', {'user_info':user_info, 'registered':registered})
+def register(request):
+    bound_form = Accountform(request.POST)
+
+    if bound_form.is_valid():
+        _form = bound_form.save_account()
+        return redirect('index')
+
+    return render(request, 'notes_app/register.html', {'form': bound_form})
