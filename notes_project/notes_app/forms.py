@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 
 
 class Noteform(forms.Form):
-    # id = forms.AutoField(primary_key=True)
     category = forms.CharField(max_length=264)
     title = forms.CharField(max_length=264)
     note_text = forms.CharField(max_length=264)
@@ -30,7 +29,6 @@ class Noteform(forms.Form):
 
 
 class Accountform(forms.Form):
-    # id = forms.AutoField()
     name = forms.CharField(max_length=264)
     username = forms.CharField(max_length=264)
     gender = forms.CharField(max_length=264)
