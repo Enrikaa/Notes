@@ -4,6 +4,7 @@ from notes_app.forms import Noteform
 from django import forms
 from urllib import request
 from notes_app.models import Note_model
+from notes_app.forms import UserInfoForm
 # Create your views here.
 
 
@@ -52,4 +53,20 @@ def update(request, num):
     context = {'form': model}
     return render(request, 'notes_app/update.html', context)
 
+def userinfo(request):
 
+    registered = False
+
+    if request.method == 'POST':
+
+        user_info = UserInfoForm(data=request.POST)
+
+        if user_info.is_valid():
+            user = user_info.save()
+            user.set_password(user.password)
+            user.save()
+            registered = True
+            return redirect('userinfo')
+    else:
+        user_info = UserInfoForm()
+    return render(request, 'notes_app/userinfo.html', {'user_info':user_info, 'registered':registered})
