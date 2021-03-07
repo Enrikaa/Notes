@@ -17,9 +17,9 @@ class Note_model(models.Model):
 class Account(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=264)
-    username = models.CharField(max_length=264, unique=True)
-    gender = models.CharField(max_length=264, unique=True)
-    age = models.CharField(max_length=264, unique=True)
+    username = models.CharField(max_length=264)
+    gender = models.CharField(max_length=264)
+    age = models.CharField(max_length=264)
 
     def __str__(self):
         return self.id
@@ -34,3 +34,4 @@ class UserInfo(models.Model):
     
 
 
+        return str(self.id)

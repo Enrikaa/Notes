@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from notes_app.forms import Noteform
+from notes_app.forms import Noteform, Accountform
 from django import forms
 from urllib import request
+<<<<<<< HEAD
 from notes_app.models import Note_model
 from notes_app.forms import UserInfoForm
+=======
+from notes_app.models import Note_model, Account
+>>>>>>> 62cf1268b786d20cb6575ef50ae3e950eee2e92b
 # Create your views here.
 
 
@@ -55,6 +59,7 @@ def update(request, num):
 
 def userinfo(request):
 
+<<<<<<< HEAD
     registered = False
 
     if request.method == 'POST':
@@ -70,3 +75,13 @@ def userinfo(request):
     else:
         user_info = UserInfoForm()
     return render(request, 'notes_app/userinfo.html', {'user_info':user_info, 'registered':registered})
+=======
+def register(request):
+    bound_form = Accountform(request.POST)
+
+    if bound_form.is_valid():
+        _form = bound_form.save_account()
+        return redirect('index')
+
+    return render(request, 'notes_app/register.html', {'form': bound_form})
+>>>>>>> 62cf1268b786d20cb6575ef50ae3e950eee2e92b

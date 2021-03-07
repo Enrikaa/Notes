@@ -1,4 +1,4 @@
-from .models import Note_model
+from .models import Note_model, Account
 from django.forms import ModelForm, TextInput
 from django import forms
 from django.core.exceptions import ValidationError
@@ -35,3 +35,23 @@ class UserInfoForm(forms.ModelForm):
         model = User
         fields = ('username','email','password')
 
+
+class Accountform(forms.Form):
+    name = forms.CharField(max_length=264)
+    username = forms.CharField(max_length=264)
+    gender = forms.CharField(max_length=264)
+    age = forms.CharField(max_length=264)
+
+    name.widget.attrs.update({'class': 'form-control'})
+    username.widget.attrs.update({'class': 'form-control'})
+    gender.widget.attrs.update({'class': 'form-control'})
+    age.widget.attrs.update({'class': 'form-control'})
+
+    def save_account(self):
+        new_account = Account.objects.create(
+            name=self.cleaned_data['name'],
+            username=self.cleaned_data['username'],
+            gender=self.cleaned_data['gender'],
+            age=self.cleaned_data['age'],
+        )
+        return new_account
