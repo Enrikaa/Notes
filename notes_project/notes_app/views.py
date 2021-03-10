@@ -27,31 +27,6 @@ def create(request):
     return render(request, 'notes_app/create.html')
 
 
-def read(request):
-    return render(request, 'notes_app/read.html')
-
-
-def undo(request):
-    # note = Noteform(request.GET)
-    return render(request, 'notes_app/undo.html')
-
-
-def delete(request):
-    # posts = Note_model.objects.all()
-    # args = {'posts': posts}
-    return render(request, 'notes_app/delete.html')
-
-
-def test_update(request, num):
-    # obj = Note_model.objects.get(id=num)
-
-    if (request.GET.get('DeleteButton')):
-        # Note_model.objects.filter(id=request.GET.get('DeleteButton')).delete()
-        # return redirect('read')
-        print("redirect read")
-    return render(request, 'notes_app/test_update.html')
-
-
 def update(request, num):
     # model = Note_model.objects.get(id=num)
     # form = Noteform()
@@ -78,15 +53,6 @@ def userinfo(request):
     return render(request, 'notes_app/userinfo.html', {'user_info': user_info, 'registered': registered})
 
 
-# def register(request):
-#     bound_form = Accountform(request.POST)
-
-#     if bound_form.is_valid():
-#         _form = bound_form.save_account()
-#         return redirect('index')
-
-#     return render(request, 'notes_app/register.html', {'form': bound_form})
-
 def register(request):
     registered = False
 
@@ -96,13 +62,13 @@ def register(request):
 
         if user_form.is_valid() and profile_form.is_valid():
 
-            #Grabing the user form and saving it to DB
+            # Grabing the user form and saving it to DB
             user = user_form.save()
-            #Hashing the pasword
+            # Hashing the pasword
             user.set_password(user.password)
             user.save()
 
-            #Don't commit to DB yet
+            # Don't commit to DB yet
             profile = profile_form.save(commit=False)
             profile.user = user
 
@@ -118,10 +84,11 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
 
-    return render(request, 'notes_app/register.html', 
-                            {'user_form':user_form,
-                            'profile_form': profile_form,
-                            'registered': registered})
+    return render(request, 'notes_app/register.html',
+                  {'user_form': user_form,
+                   'profile_form': profile_form,
+                   'registered': registered})
+
 
 @login_required
 def user_logout(request):
@@ -129,10 +96,11 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('index'))
 
 # Return something special for user
+
+
 @login_required
 def special(request):
     return HttpResponse("You are logged in, Nice!")
-
 
 
 def user_login(request):

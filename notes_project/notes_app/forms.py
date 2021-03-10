@@ -28,6 +28,7 @@ from notes_app.models import UserProfileInfo
 #         )
 #         return new_note
 
+
 class UserInfoForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
@@ -35,34 +36,16 @@ class UserInfoForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password')
 
-# class Accountform(forms.Form):
-#     name = forms.CharField(max_length=264)
-#     username = forms.CharField(max_length=264)
-#     gender = forms.CharField(max_length=264)
-#     age = forms.CharField(max_length=264)
-
-#     name.widget.attrs.update({'class': 'form-control'})
-#     username.widget.attrs.update({'class': 'form-control'})
-#     gender.widget.attrs.update({'class': 'form-control'})
-#     age.widget.attrs.update({'class': 'form-control'})
-
-#     def save_account(self):
-#         new_account = Account.objects.create(
-#             name=self.cleaned_data['name'],
-#             username=self.cleaned_data['username'],
-#             gender=self.cleaned_data['gender'],
-#             age=self.cleaned_data['age'],
-#         )
-#         return new_account
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta():
         model = User
-        fields = ('username','email','password')
+        fields = ('username', 'email', 'password')
+
+
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
-        fields = ('portfolio_site','profile_pic')
-
+        fields = ('portfolio_site', 'profile_pic')
