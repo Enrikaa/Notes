@@ -1,7 +1,6 @@
 from django.conf.urls import url
 from notes_app import views
 from django.views.generic import ListView
-from django.urls import path
 
 
 urlpatterns = [

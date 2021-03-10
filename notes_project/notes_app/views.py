@@ -1,15 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponse
 from django import forms
 from urllib import request
 from notes_app.forms import UserInfoForm
-
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from notes_app.forms import UserForm, UserProfileInfoForm
-
 from django.views import View
 
 
