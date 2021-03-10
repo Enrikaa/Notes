@@ -30,7 +30,6 @@
 #         t = Note_model(category=cat_data, title=tit_data, note_text=not_data)
 #         t.save()
 #         # return t
-# test
 
 # if __name__ == "__main__":
 #     print("Populating script!")
