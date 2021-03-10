@@ -86,6 +86,7 @@ def register(request):
 
     return render(request, 'notes_app/register.html', {'form': bound_form})
 
+
 def user_login(request):
 
     if request.method == 'POST':
@@ -98,14 +99,14 @@ def user_login(request):
 
         if user:
             if user.is_active:
-                #If the user is active we gona to log the user in
-                login(request,user)
-                #Then user loged in we send him to index:
+                # If the user is active we gona to log the user in
+                login(request, user)
+                # Then user loged in we send him to index:
                 return HttpResponseRedirect(reverse('index'))
             else:
                 return HttpResponse("Account not active")
         else:
-            print("Someone tried to login and failed!")           
+            print("Someone tried to login and failed!")
             print(f"Username: {username} and password {password}")
     else:
         return render(request, 'notes_app/user_login.html')
