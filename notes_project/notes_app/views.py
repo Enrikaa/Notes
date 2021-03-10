@@ -15,7 +15,6 @@ from django.views.generic import ListView, DetailView
 def index(request):
     return render(request, "notes_app/index.html")
 
-
 def create(request):
     # bound_form = Noteform(request.POST)
 
