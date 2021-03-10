@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from notes_app.forms import Noteform
 from django import forms
 from urllib import request
-from notes_app.models import Note_model
 from notes_app.forms import UserInfoForm, Accountform
 
 from django.contrib.auth import authenticate, login, logout
@@ -29,8 +27,7 @@ def create(request):
 
 
 def read(request):
-    data = Note_model.objects.all()
-    return render(request, 'notes_app/read.html', {'notes': data})
+    return render(request, 'notes_app/read.html')
 
 
 def undo(request):
@@ -39,25 +36,26 @@ def undo(request):
 
 
 def delete(request):
-    posts = Note_model.objects.all()
-    args = {'posts': posts}
-    return render(request, 'notes_app/delete.html', context=args)
+    # posts = Note_model.objects.all()
+    # args = {'posts': posts}
+    return render(request, 'notes_app/delete.html')
 
 
 def test_update(request, num):
-    obj = Note_model.objects.get(id=num)
+    # obj = Note_model.objects.get(id=num)
 
     if (request.GET.get('DeleteButton')):
-        Note_model.objects.filter(id=request.GET.get('DeleteButton')).delete()
-        return redirect('read')
-    return render(request, 'notes_app/test_update.html', {'note': obj})
+        # Note_model.objects.filter(id=request.GET.get('DeleteButton')).delete()
+        # return redirect('read')
+        print("redirect read")
+    return render(request, 'notes_app/test_update.html')
 
 
 def update(request, num):
-    model = Note_model.objects.get(id=num)
+    # model = Note_model.objects.get(id=num)
     forma = Noteform()
-    context = {'form': model}
-    return render(request, 'notes_app/update.html', context)
+    # context = {'form': model}
+    return render(request, 'notes_app/update.html')
 
 
 def userinfo(request):
