@@ -1,6 +1,7 @@
 from django.contrib import admin
-from notes_app.models import Note_model
+from notes_app.models import UserInfo, ClassRoom
+
 # Register your models here.
 
-admin.site.register(Note_model)
-
+admin.site.register(UserInfo)
+admin.site.register(ClassRoom)

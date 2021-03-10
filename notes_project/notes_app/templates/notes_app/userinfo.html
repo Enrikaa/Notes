@@ -1,0 +1,16 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+
+  {% if registered %}
+    <h1>Thanks for registering!</h1>
+  {% else %}
+    <h1>Try second time!</h1>
+
+    <form action="" method="POST">
+      {% csrf_token%}    
+      {{user_info.as_p}}
+      <input type="submit" name="" value="Register">
+    </form>
+
+    {% endif %}
+{% endblock %}
