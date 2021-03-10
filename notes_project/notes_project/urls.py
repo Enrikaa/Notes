@@ -18,10 +18,15 @@ from django.urls import path
 from django.conf.urls import url
 from django.conf.urls import include
 from notes_app import views
+from notes_app.views import ClassRoomListView, ClassRoomDetailView, UserLogin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.index, name="index"),
     url(r'^', include('notes_app.urls')),
-    url(r'^user_login/$', views.user_login, name='user_login'),
+    # url(r'^user_login/$', views.user_login, name='user_login'),
+    path('class_room/', ClassRoomListView.as_view(), name='class_room'),
+    path('ClassRoomDetailView/<int:pk>', ClassRoomDetailView.as_view(), name='ClassRoomDetailView'),
+    path('user_login/', UserLogin.as_view(), name='UserLogin'),
+
 ]

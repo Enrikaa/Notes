@@ -14,13 +14,11 @@
       
       <a href="{% url 'register' %}"><button type="button" class="btn btn-primary" name="button">Register</button></a>
       <a href="{% url 'admin:index' %}"><button type="button" class="btn btn-primary" name="button">Admin</button></a>
-      <!-- <a href="{% url 'user_login' %}"><button type="button" class="btn btn-primary" name="button">Login</button></a> -->
 
-      <!-- The user pass the user_login function -->
       {% if user.is_authenticated %}
         <li><a href="{% url 'user_logout' %}">Logout</a></li>
       {% else %}
-        <li><a href="{% url 'user_login' %}">Login</a></li>
+        <li><a href="{% url 'UserLogin' %}">Login</a></li>
       {% endif %}
 
     </div>

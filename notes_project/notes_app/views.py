@@ -8,7 +8,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from notes_app.forms import UserForm, UserProfileInfoForm
 from django.views import View
-
+from notes_app.models import ClassRoom
+from django.views.generic import ListView, DetailView
 
 def index(request):
     return render(request, 'notes_app/index.html')
@@ -100,28 +101,67 @@ def special(request):
     return HttpResponse("You are logged in, Nice!")
 
 
-def user_login(request):
+# def user_login(request):
 
-    if request.method == 'POST':
-        # Take username and password data
+#     if request.method == 'POST':
+#         # Take username and password data
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+
+#         # Automatically authenticate user
+#         user = authenticate(username=username, password=password)
+
+#         if user:
+#             if user.is_active:
+#                 # If the user is active we gona to log the user in
+#                 login(request, user)
+#                 # Then user loged in we send him to index:
+#                 return HttpResponseRedirect(reverse('index'))
+#             else:
+#                 return HttpResponse("Account not active")
+#         else:
+#             print("Someone tried to login and failed!")
+#             print(f"Username: {username} and password {password}")
+#     else:
+#         return render(request, 'notes_app/user_login.html')
+
+#     return render(request, 'notes_app/user_login.html')
+
+# class Class_room(View):
+
+# def class_room(request):
+#     obj = ClassRoom.objects.all()
+#     return render(request, 'notes_app/class_room.html', {'classes':obj})
+
+class ClassRoomListView(ListView):
+    model = ClassRoom
+
+
+#By ID
+class ClassRoomDetailView(DetailView):
+    model = ClassRoom
+    def get_context_data(self, **kwargs):
+        context = {'obj': ClassRoom.objects.get(
+            id=self.kwargs['pk'])}
+        return context
+
+class UserLogin(View):
+    def get(self, request):
+        return render(request, 'notes_app/user_login.html', {})
+
+    def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        # Automatically authenticate user
         user = authenticate(username=username, password=password)
 
-        if user:
-            if user.is_active:
-                # If the user is active we gona to log the user in
-                login(request, user)
-                # Then user loged in we send him to index:
-                return HttpResponseRedirect(reverse('index'))
-            else:
-                return HttpResponse("Account not active")
-        else:
-            print("Someone tried to login and failed!")
-            print(f"Username: {username} and password {password}")
-    else:
-        return render(request, 'notes_app/user_login.html')
-
-    return render(request, 'notes_app/user_login.html')
+        if not user:
+            print("Someone tried to login and failed!")           
+            print(f"Username: {username} and password: {password}")
+            return HttpResponse("Account not active")
+        
+        if not user.is_active:
+            return HttpResponse("Account not active")
+        
+        login(request, user)
+        return HttpResponseRedirect(reverse('index'))

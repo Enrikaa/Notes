@@ -1,0 +1,11 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+{{ other_blog_posts}}
+
+<div class="container">
+        <h2> {{  obj.class_name }} </h2>
+        <h2> {{ obj.class_number }} </h2>
+        <h2> {{ obj.class_status }} </h2>            
+</div>
+
+{% endblock %}

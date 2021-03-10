@@ -1,0 +1,12 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+
+<div class="container">
+    {% for class in object_list %}
+        <h2> {{  class.class_name }} </h2>
+        <h2> {{ class.class_number }} </h2>
+        <h2> {{ class.class_status }} </h2>            
+    {% endfor %}
+</div>
+
+{% endblock %}

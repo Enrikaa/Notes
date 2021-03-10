@@ -21,3 +21,8 @@ class UserProfileInfo(models.Model):
     def __str__(self): 
         # Built-in attribute of django.contrib.auth.models.User !
         return self.user.username
+
+class ClassRoom(models.Model):
+    class_name = models.TextField(max_length=248)
+    class_number =models.TextField(max_length=248)
+    class_status = models.TextField(max_length=100)
