@@ -11,8 +11,9 @@ from django.views import View
 from notes_app.models import ClassRoom
 from django.views.generic import ListView, DetailView
 
+
 def index(request):
-    return render(request, 'notes_app/index.html')
+    return render(request, "notes_app/index.html")
 
 
 def create(request):
@@ -22,21 +23,21 @@ def create(request):
     #     # new_form = bound_form.save()
     #     return redirect('index')
 
-    return render(request, 'notes_app/create.html')
+    return render(request, "notes_app/create.html")
 
 
 def update(request, num):
     # model = Note_model.objects.get(id=num)
     # form = Noteform()
     # context = {'form': model}
-    return render(request, 'notes_app/update.html')
+    return render(request, "notes_app/update.html")
 
 
 def userinfo(request):
 
     registered = False
 
-    if request.method == 'POST':
+    if request.method == "POST":
 
         user_info = UserInfoForm(data=request.POST)
 
@@ -45,10 +46,14 @@ def userinfo(request):
             user.set_password(user.password)
             user.save()
             registered = True
-            return redirect('userinfo')
+            return redirect("userinfo")
     else:
         user_info = UserInfoForm()
-    return render(request, 'notes_app/userinfo.html', {'user_info': user_info, 'registered': registered})
+    return render(
+        request,
+        "notes_app/userinfo.html",
+        {"user_info": user_info, "registered": registered},
+    )
 
 
 def register(request):
@@ -70,8 +75,8 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
 
-            if 'profile_pic' in request.FILES:
-                profile.profile_pic = request.FILES['profile_pic']
+            if "profile_pic" in request.FILES:
+                profile.profile_pic = request.FILES["profile_pic"]
                 profile.save()
 
                 registered = True
@@ -82,16 +87,22 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
 
-    return render(request, 'notes_app/register.html',
-                  {'user_form': user_form,
-                   'profile_form': profile_form,
-                   'registered': registered})
+    return render(
+        request,
+        "notes_app/register.html",
+        {
+            "user_form": user_form,
+            "profile_form": profile_form,
+            "registered": registered,
+        },
+    )
 
 
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse("index"))
+
 
 # Return something special for user
 
@@ -133,35 +144,37 @@ def special(request):
 #     obj = ClassRoom.objects.all()
 #     return render(request, 'notes_app/class_room.html', {'classes':obj})
 
+
 class ClassRoomListView(ListView):
     model = ClassRoom
 
 
-#By ID
+# By ID
 class ClassRoomDetailView(DetailView):
     model = ClassRoom
+
     def get_context_data(self, **kwargs):
-        context = {'obj': ClassRoom.objects.get(
-            id=self.kwargs['pk'])}
+        context = {"obj": ClassRoom.objects.get(id=self.kwargs["pk"])}
         return context
+
 
 class UserLogin(View):
     def get(self, request):
-        return render(request, 'notes_app/user_login.html', {})
+        return render(request, "notes_app/user_login.html", {})
 
     def post(self, request):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
         user = authenticate(username=username, password=password)
 
         if not user:
-            print("Someone tried to login and failed!")           
+            print("Someone tried to login and failed!")
             print(f"Username: {username} and password: {password}")
             return HttpResponse("Account not active")
-        
+
         if not user.is_active:
             return HttpResponse("Account not active")
-        
+
         login(request, user)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse("index"))
