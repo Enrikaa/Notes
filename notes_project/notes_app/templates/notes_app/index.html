@@ -15,9 +15,16 @@
       <a href="{% url 'read' %}"><button type="button" class="btn btn-primary" name="button">Read</button></a>
       <a href="{% url 'undo' %}"><button type="button" class="btn btn-primary" name="button">Undo</button></a>
       <a href="{% url 'delete' %}"><button type="button" class="btn btn-primary" name="button">Delete</button></a>
-      <a href="{% url 'userinfo' %}"><button type="button" class="btn btn-primary" name="button">Register</button></a>
+      <a href="{% url 'register' %}"><button type="button" class="btn btn-primary" name="button">Register</button></a>
       <a href="{% url 'admin:index' %}"><button type="button" class="btn btn-primary" name="button">Admin</button></a>
-      <a href="{% url 'user_login' %}"><button type="button" class="btn btn-primary" name="button">Login</button></a>
+      <!-- <a href="{% url 'user_login' %}"><button type="button" class="btn btn-primary" name="button">Login</button></a> -->
+
+      <!-- The user pass the user_login function -->
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'user_login' %}">Login</a></li>
+      {% endif %}
 
     </div>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
