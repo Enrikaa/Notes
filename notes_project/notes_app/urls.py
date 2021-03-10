@@ -14,4 +14,5 @@ urlpatterns = [
     path('update/<int:num>/', views.update, name='update'),
     url(r'^userinfo/$', views.userinfo, name='userinfo'),
     url(r'^register/$', views.register, name='register'),
+    url(r'^user_login/$', views.user_login, name='user_login'),
 ]

@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from notes_app.forms import Noteform
 from django import forms
 from urllib import request
+from notes_app.models import Note_model
+from notes_app.forms import UserInfoForm, Accountform
 
-from notes_app.forms import UserInfoForm
-# Create your views here.
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+
+from django.views import View
 
 
 def index(request):
@@ -80,3 +87,29 @@ def register(request):
         return redirect('index')
 
     return render(request, 'notes_app/register.html', {'form': bound_form})
+
+def user_login(request):
+
+    if request.method == 'POST':
+        # Take username and password data
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Automatically authenticate user
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                #If the user is active we gona to log the user in
+                login(request,user)
+                #Then user loged in we send him to index:
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return HttpResponse("Account not active")
+        else:
+            print("Someone tried to login and failed!")           
+            print(f"Username: {username} and password {password}")
+    else:
+        return render(request, 'notes_app/user_login.html')
+
+    return render(request, 'notes_app/user_login.html')

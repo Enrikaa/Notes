@@ -1,0 +1,20 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <h1>Please login</h1>
+        <form action="{% url 'user_login' %}" method="post">
+
+            {% csrf_token %} 
+            <!-- Label for the username -->
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="Enter Username">
+
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+
+            <input type="submit" value="login" name="">
+        </form>
+    </div>
+
+{% endblock %}
