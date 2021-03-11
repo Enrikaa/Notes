@@ -10,30 +10,12 @@ from notes_app.forms import UserForm, UserProfileInfoForm
 from django.views import View
 from notes_app.models import ClassRoom
 from django.views.generic import ListView, DetailView
-from .scripts import scraper_news as scrapper
 import requests
 from bs4 import BeautifulSoup as bs4
 
 
 def index(request):
     return render(request, "notes_app/index.html")
-
-
-def create(request):
-    # bound_form = Noteform(request.POST)
-
-    # if bound_form.is_valid():
-    #     # new_form = bound_form.save()
-    #     return redirect('index')
-
-    return render(request, "notes_app/create.html")
-
-
-def update(request, num):
-    # model = Note_model.objects.get(id=num)
-    # form = Noteform()
-    # context = {'form': model}
-    return render(request, "notes_app/update.html")
 
 
 def userinfo(request):
@@ -108,44 +90,9 @@ def user_logout(request):
 
 
 # Return something special for user
-
-
 @login_required
 def special(request):
     return HttpResponse("You are logged in, Nice!")
-
-
-# def user_login(request):
-
-#     if request.method == 'POST':
-#         # Take username and password data
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-
-#         # Automatically authenticate user
-#         user = authenticate(username=username, password=password)
-
-#         if user:
-#             if user.is_active:
-#                 # If the user is active we gona to log the user in
-#                 login(request, user)
-#                 # Then user loged in we send him to index:
-#                 return HttpResponseRedirect(reverse('index'))
-#             else:
-#                 return HttpResponse("Account not active")
-#         else:
-#             print("Someone tried to login and failed!")
-#             print(f"Username: {username} and password {password}")
-#     else:
-#         return render(request, 'notes_app/user_login.html')
-
-#     return render(request, 'notes_app/user_login.html')
-
-# class Class_room(View):
-
-# def class_room(request):
-#     obj = ClassRoom.objects.all()
-#     return render(request, 'notes_app/class_room.html', {'classes':obj})
 
 
 class ClassRoomListView(ListView):
@@ -184,9 +131,9 @@ class UserLogin(View):
 
 
 def news(request):
-    a = getNews(Post)
+    news = getNews(Post)
 
-    return render(request, "notes_app/projects/news.html", {"data": a})
+    return render(request, "notes_app/projects/news.html", {"data": news})
 
 
 class Post:
