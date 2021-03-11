@@ -1,6 +1,10 @@
 {% block content %}
 
-  {{obj}}
+{% for class in posts %}
+<h2> {{  class.date }} </h2>
+<!-- <h2> {{ class.class_number }} </h2> -->
+<!-- <h2> {{ class.class_status }} </h2>             -->
+{% endfor %}
   
   
 {% endblock %}
