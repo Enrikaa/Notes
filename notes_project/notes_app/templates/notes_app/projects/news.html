@@ -1,0 +1,21 @@
+{% extends 'notes_app/index.html' %}
+{% block content %}
+
+<h2>LP Express naujienos</h2>
+{% for i in data %}
+<div class="card mb-4" style="max-width: 540px; max-height: 300px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{i.imgUrl}}" alt="..." width="200" height="220">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{i.title}}</h5>
+          <p class="card-text"><a class="btn btn-info" href="{{i.textUrl}}" role="button">Skaityti</a></p>
+          <p class="card-text"><small class="text-muted">Last updated : {{i.date}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}
