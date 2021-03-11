@@ -15,6 +15,7 @@ from django.views.generic import ListView, DetailView
 def index(request):
     return render(request, "notes_app/index.html")
 
+
 def create(request):
     # bound_form = Noteform(request.POST)
 
@@ -177,3 +178,7 @@ class UserLogin(View):
 
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
+
+
+def news(request):
+    return render(request, "notes_app/projects/news.html", {"text": "LP Express News"})
